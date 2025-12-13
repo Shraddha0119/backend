@@ -5,20 +5,20 @@ const UserSchema = new mongoose.Schema({
     name:String,
     price:Number,
     email:{
-        type:String,
-        required:true,
-        unique:true,
+        type: String,
+        required: true,
+        unique: true,
     },
-    password:String,
+    password: String,
      mobile:{
-        type:String,
-        required:true,
-        unique:true,
+        type: String,
+        required: true,
+        unique: true,
     },
 
    
 });
 
-const Usermodel = mongoose.model("product", UserSchemaSchema)
+const Usermodel = mongoose.model("User", UserSchema);
 
 export default Usermodel;

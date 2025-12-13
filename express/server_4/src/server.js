@@ -8,13 +8,14 @@ dotenv.config();
 
 
 const app = express();
-app.use(express.json())
+
+app.use(express.json());
 
 const PORT= process.env.PORT || 4000;
 connectDB();
 
-app.use("/api/product", productRouter)
-app.use("/api/user",UserRouter)
+app.use("/api/product", productRouter);
+app.use("/api/user", UserRouter);
 
 
 
