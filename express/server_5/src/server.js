@@ -17,8 +17,9 @@ app.get("/",(req,res)=>{
 app.use("/api/product", productrouter)
 app.use("/api/user", userrouter)
 
-const PORT = process.env.PORT ||  8085;
+const PORT = process.env.PORT || 8085;
+
 
 app.listen(PORT,()=>{
-    console.log(`server is running `)
+    console.log(`server is running https://localhost:${PORT} `)
 })

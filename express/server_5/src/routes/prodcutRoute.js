@@ -7,6 +7,6 @@ const productrouter = express.Router();
 
 
 productrouter.get("/getdata",loginverify,getProduct )
-productrouter.post("/postdata",checkrole("admin"), postProduct )
+productrouter.post("/postdata",loginverify,checkrole("admin"),postProduct )
 
 export default productrouter;
