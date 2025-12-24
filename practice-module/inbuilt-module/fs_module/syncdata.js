@@ -9,11 +9,17 @@ import fs from "fs"
 // })
 
 
-// syanc
 
-fs.writeFile("data.txt","bye-bye",(err)=>{
-    if(err) console.log(err);
-    else console.log("file created");
+
+// fs.writeFile("data.txt","bye-bye",(err)=>{
+//     if(err) console.log(err);
+//     else console.log("file created");
     
     
-})
+// })
+
+// sync
+
+let a = fs.readFileSync("data.text","heloo")
+console.log(a);
+
