@@ -3,18 +3,34 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const register = async (req, res) => {
-  const { name, email, password, role } = req.body;
-  const hashpass = await bcrypt.hash(password, 10);
+  try {
+    const { name, email, password, role } = req.body;
 
-  const user = await userModel.create({
-    name,
-    email,
-    password: hashpass,
-    role
-  });
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
 
-  res.status(201).json({massage:"User created", user})
+    const hashpass = await bcrypt.hash(password, 10);
+
+    const user = await userModel.create({
+      name,
+      email,
+      password: hashpass,
+      role,
+      profile: req.file ? `uploads/${req.file.filename}` : ""
+    });
+
+    res.status(201).json({
+      message: "User created",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
+
+
 
 
 const login = async(req,res)=>{
@@ -32,14 +48,14 @@ const login = async(req,res)=>{
 }
 
 const getAllUser = async(req,res)=>{
- 
   try {
-     let Alluser = await userModel.find();
+    let Alluser = await userModel.find().select("-password");
      res.status(200).send(Alluser)
   } catch (error) {
     res.send(error)
-    
   }
+
 }
+
 
 export {register,login,getAllUser};

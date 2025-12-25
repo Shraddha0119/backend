@@ -4,6 +4,10 @@ const productSchema = new mongoose.Schema({
   title: String,
   price:Number,
  description:String,
+  images:{
+  type: [String],  // multiple images
+  default:[]
+ }
   
 });
 

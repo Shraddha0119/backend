@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 
 // verify transporter//
 transporter.verify((error)=>{
-    if(error) console.log("Smtp error ❌",error);
+    if(error) console.log("Smtp error ❌",error.message);
     else console.log("smtp ready✔️");
     });
 

@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     default:"user"
   },
   profile:{
-    type:String,
+    type: String,
     default:"",
   }
 });

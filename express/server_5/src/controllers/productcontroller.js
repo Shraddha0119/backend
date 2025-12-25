@@ -1,6 +1,6 @@
 
 import productModel from "../models/ProductModel.js";
-import sendMail from "../utils/mailer.js"
+// import sendMail from "../utils/mailer.js"
 
 const getProduct = async(req,res)=>{
    try {
@@ -35,17 +35,29 @@ const getProduct = async(req,res)=>{
 
 const postProduct = async(req,res)=>{
     try {
-        
-        const product = await productModel.create(req.body)
+       const { title, price } = req.body;
 
-        await sendMail({
-            to:"gunjkarshraddha6@gmail.com",
-            subject:"new product added",
-            html:`<h2>please pay your bill</h2>
-                  <p><b>Name:</b>${product.title}</p>
-                  <p><b>price:</b>${product.price}</p>
-                  `
-        })
+    
+    //  const images = req.files.map(
+    //     (file) => `uploads/products/${file.filename}`
+    //   );
+
+      const product = await productModel.create({
+        title,
+        price,
+        images: req.files ? req.files.map(file=> file.path ) : []
+      });
+        
+        // const product = await productModel.create(req.body)
+
+        // await sendMail({
+        //     to:"gunjkarshraddha6@gmail.com",
+        //     subject:"new product added",
+        //     html:`<h2>please pay your bill</h2>
+        //           <p><b>Name:</b>${product.title}</p>
+        //           <p><b>price:</b>${product.price}</p>
+        //           `
+        // })
 
 
 
