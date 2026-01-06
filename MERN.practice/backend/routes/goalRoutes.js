@@ -7,6 +7,4 @@ router.route('/:id').put(updateGoal).delete(deleteGoal)
 
 
 
-
-
 module.exports = router
